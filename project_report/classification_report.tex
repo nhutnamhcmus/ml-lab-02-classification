@@ -1,0 +1,170 @@
+%!TeX encoding = UTF-8 Unicode
+\documentclass{article}
+\usepackage[pdftex]{graphicx} %for embedding images
+\usepackage{url} %for proper url entries
+\usepackage[bookmarks, colorlinks=false, pdfborder={0 0 0}, pdftitle={Laboratory ML Project 02}, pdfauthor={Nhut-Nam Le}, pdfsubject={Introduction to Machine Learning}, pdfkeywords={report, exercises}]{hyperref} %for creating links in the pdf version and other additional pdf attributes, no effect on the printed document
+%\usepackage[final]{pdfpages} %for embedding another pdf, remove if not required
+\usepackage[utf8]{inputenc}
+\usepackage[english, vietnamese]{babel}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{pythonhighlight}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{parskip}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage[]{algorithm2e}
+\usepackage[noend]{algpseudocode}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\newcommand\T{\rule{0pt}{2.6ex}}       % Top strut
+\newcommand\B{\rule[-1.2ex]{0pt}{0pt}} % Bottom strut
+
+
+\lstset{frame=tb,
+	language=Java,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+
+\setlength{\parindent}{15pt}
+\setlength{\headheight}{15.2pt}
+\pagestyle{fancy}
+\lhead[<even output>]{NHẬP MÔN HỌC MÁY}
+\rhead[<even output>]{BÁO CÁO ĐỒ ÁN THỰC HÀNH 02}
+\title{research-outline}
+\author{Nhut-Nam Le}
+\date{2021}
+\begin{document}
+	\begin{titlepage}
+		\begin{center}
+			% Top of the page
+			\large{\textbf{ĐẠI HỌC KHOA HỌC TỰ NHIÊN, ĐHQG-HCM\\KHOA CÔNG NGHỆ THÔNG TIN\\BỘ MÔN KHOA HỌC MÁY TÍNH}}\\
+			\includegraphics[width=0.75\textwidth]{images/khtn.png}\\
+			% Title
+			\large \textbf{NHẬP MÔN HỌC MÁY}\\[0.1in]
+			\huge \textbf{BÁO CÁO ĐỒ ÁN THỰC HÀNH}\\[0.1in]
+			\huge \textbf{CLASSIFICATION - PHÂN LỚP}\\[0.1in]
+			\vfill
+			\normalsize
+			% Submitted by
+			\normalsize
+			% Lecturers
+			\textbf{Giảng viên lý thuyết}\\
+			{\textbf{TS.} Bùi Tiến Lên}\\[0.1in]
+			% Teacher Assistant
+			\textbf{Giảng viên hướng dẫn}\\
+			\vspace{0.1in}
+			{Dương Nguyễn Thái Bảo, Nguyễn Ngọc Đức, Nguyễn Tiến Huy, Lê Thanh Phong}\\[0.1in]
+			\textbf{Sinh viên thực hiện} \\
+			\vspace{0.1in}
+			% Submitted by
+			{Vương Gia Bảo, Ngô Xuân Kiên, Lê Nhựt Nam, Nguyễn Viết Dũng}\\[0.1in]
+			% Date time when written report
+			\vfill
+			Tháng 5 năm 2021
+		\end{center}
+	\end{titlepage}
+	\newpage
+	% End Title4
+	
+	\pagenumbering{roman} %numbering before main content starts
+	\cleardoublepage
+	%\pagebreak
+	\phantomsection
+	\addcontentsline{toc}{section}{Lời cảm ơn}
+	\section*{Lời cảm ơn}
+	\vspace{1.0in}
+	\begingroup
+	\setlength{\parindent}{0pt}
+	\qquad Trong quá trình thực hiện đồ án này, chúng em đã nhận được rất nhiều sự giúp đỡ cũng như hỗ trợ từ các thầy cô Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM và các bạn bè trong lớp Nhập môn Học Máy. Chúng em xin bày tỏ lòng cảm ơn chân thành đến mọi người vì đã giúp đỡ hướng dẫn, chỉ bảo rất tận tình.
+	
+	\qquad Đặc biệt, chúng em xin bày tỏ lòng biết ơn sâu sắc đến các thầy cô khoa Công nghệ Thông tin, cụ thể hơn là thầy Bùi Tiến Lên và các thầy hướng dẫn đã giảng dạy rất nhiệt, cung cấp nhiều slides, tài nguyên học tập cần thiết, tạo điều kiện tốt nhất để chúng em có thể hoàn thành được đồ án này.
+	
+	\qquad Trong quá trình, viết báo cáo này, chúng em không thể tránh khỏi nhiều thiếu sót, hy vọng mong nhận được góp ý từ thầy để chúng em tiếp tục hoàn thiện hơn đối với đồ án này, cũng như rút kinh nghiệm cho những đồ án, những báo cáo kế tiếp.
+	
+	\vspace{1.0in}
+	\textbf{Đại học Khoa học Tự nhiên, ĐHQG-HCM.}\\
+	Vương Gia Bảo, Ngô Xuân Kiên, Lê Nhựt Nam, Nguyễn Viết Dũng\\
+	Tháng 4 năm 2021\\
+	\endgroup
+	
+	\newpage
+	\tableofcontents
+	\newpage
+	\pagenumbering{arabic} %reset numbering to normal for the main content
+	\setcounter{secnumdepth}{0}
+	
+	\section{Thông tin nhóm}
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{ | p{1cm} |  p{3cm} | p{5cm} | p{5cm}  |}\hline
+			STT	& MSSV & Họ tên đầy đủ & Email liên lạc \\\hline
+			1 & 18120009 & Vương Gia Bảo & 18120009@student.hcmus.edu.vn  \\ \hline
+			2 & 18120045 & Ngô Xuân Kiên & 18120045@student.hcmus.edu.vn \\ \hline
+			3 & 18120061 & Lê Nhựt Nam & 18120061@student.hcmus.edu.vn  \\ \hline
+			4 & 18120167 & Nguyễn Viết Dũng &  18120167@student.hcmus.edu.vn \\ \hline
+		\end{tabular}
+	\end{table}
+	\section{Phân công công việc}
+	\begin{table}[H]
+		\begin{tabular}{ | l | l | l | p{5.5cm} | p{3cm} |}
+			\hline
+			STT & MSSV & Họ tên & Nội dung công việc & Mức độ hoàn thành  \\ \hline
+			1 & 18120009 & Vương Gia Bảo & Thu thập dữ liệu, đọc hiểu source, báo cáo Introduction Paper &  100\%\T\B\\ \hline
+			2 & 18120045 & Ngô Xuân Kiên & Thu thập dữ liệu, đọc hiểu source, báo cáo Related Work Paper & 100\%\T\B \\ \hline
+			3 & 18120061 & Lê Nhựt Nam & Thu thập dữ liệu, đọc hiểu source, báo cáo, SincNet Architecture, Slides thuyết trình, Midterm Report & 100\%\T\B \\ \hline
+			4 & 18120167 & Nguyễn Viết Dũng &  Thu thập dữ liệu, đọc hiểu source, báo cáo experimental setup Paper & 100\%\T\B \\ \hline
+		\end{tabular}
+	\end{table}
+	\section{Tiêu chí đánh giá đồ án}
+	\subsection{Bảng tiêu chí cho đồ án}
+	\begin{table}[H]
+		\begin{tabular}{ | p{5cm} | p{6.25cm} | p{3cm} |}\hline
+			Tên tiêu chí đồ án & Nội dung tiêu chí & Mức độ hoàn thiện  \T\B\\\hline
+			Nhận diện bài toán & Sinh viên cần tìm hiểu bài toán và dữ liệu được giao
+			nhằm xác định nội dung và ý nghĩa bài toán thực tế cần giải quyết. Thông
+			qua đó, sinh viên có khả năng ánh xạ vấn đề thực tế sang bài toán lập trình & 100\%  \T\B\\\hline
+			Giải quyết vấn đề & Sinh viên được yêu cầu đưa ra các giải pháp và hướng
+			tiếp cận nhằm giải quyết được yêu cầu bài toán thực tế & 100\%  \T\B\\\hline
+			Xử lý và phân tích dữ liệu & Sinh viên có khả năng xử lý các công cụ phân
+			tích dữ liệu tự động nhằm tìm ra các thông tin hữu ích, các đặc trưng tiềm ẩn
+			ảnh hưởng để mục tiêu bài toán &100\%  \T\B\\\hline
+			Thiết kế và cài đặt các thuật toán máy học & Sinh viên được yêu cầu có
+			khả năng đề xuất, triển khai và giải thích các thuật toán máy học nhằm giải
+			quyết bài toán được giao & 100\%  \T\B\\\hline
+		\end{tabular}
+	\end{table}
+	\subsection{Bảng yêu cầu cho đồ án}
+	\begin{table}[H]
+		\begin{tabular}{ | p{5cm} | p{6.5cm} | p{3cm} |}\hline	
+			Tên yêu cầu & Nội dung yêu cầu & Mức độ hoàn thiện  \T\B\\\hline
+			Phân tích dữ liệu & Phân tích kỹ bài toán và tập dữ liệu hình ảnh được cung cấp. Chọn lựa và
+			trình bày kiểu mạng nơron để giải quyết bài toán. & 100\%  \T\B\\\hline
+			Cài đặt thuật toán & Cài đặt mạng Nơron. & 100\%  \T\B\\\hline
+			Trình bày kết quả và nhận xét & Báo cáo kết quả đạt đưoc sau quá trình phân tích và cài đặt. & 100\%  \T\B\\\hline
+		\end{tabular}
+	\end{table}	
+	\section{Nội dung báo cáo}
+	
+	
+\end{document}
