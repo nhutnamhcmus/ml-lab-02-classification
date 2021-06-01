@@ -1,7 +1,7 @@
 # Ignore dataset
 plant-pathology-2020-fgvc7/
 plant-pathology-2020-fgvc7.zip
-
+plant-pathology-2020-fgvc7-npy.zip
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
