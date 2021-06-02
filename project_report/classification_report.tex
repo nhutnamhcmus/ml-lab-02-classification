@@ -931,63 +931,106 @@
 	\end{itemize}
 	\section{8. Các kết quả đạt được}
 	\subsection{8.1 Kết quả với ResNet18}
+	Huấn luyện mô hình với mạng ResNet18, với 5-Fold, mỗi fold gồm 10 epoch
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\linewidth]{results/resnet18/training_loss_results.png}
-		\caption{Đồ thị training loss, validation loss}
+		\caption{Đồ thị training loss, validation loss ResNet18}
 		\label{fig:writing-thesis}
 	\end{figure}
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\linewidth]{results/resnet18/valid_score_results.png}
-		\caption{Đồ thị Validation Score}
+		\caption{Đồ thị Validation Score ResNet18}
 		\label{fig:writing-thesis}
 	\end{figure}
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\linewidth]{results/resnet18/CV_Score_5_Folds_ResNet18.png}
-		\caption{Kết quả Cross Validation Score sau 5-Folds Training}
+		\caption{Kết quả Cross Validation Score sau 5-Folds Training ResNet18}
 		\label{fig:writing-thesis}
 	\end{figure}
 	\subsection{8.2 Kết quả với ResNet34}
+	Huấn luyện mô hình với mạng ResNet34, với 5-Fold, mỗi fold gồm 10 epoch
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\linewidth]{results/resnet34/training_loss_results.png}
-		\caption{Đồ thị training loss, validation loss}
+		\caption{Đồ thị training loss, validation loss ResNet34}
 		\label{fig:writing-thesis}
 	\end{figure}
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\linewidth]{results/resnet34/valid_score_results.png}
-		\caption{Đồ thị Validation Score}
+		\caption{Đồ thị Validation Score ResNet34}
 		\label{fig:writing-thesis}
 	\end{figure}
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\linewidth]{results/resnet34/CV_Score_5_Folds_ResNet34.png}
-		\caption{Kết quả Cross Validation Score sau 5-Folds Training}
+		\caption{Kết quả Cross Validation Score sau 5-Folds Training ResNet34}
 		\label{fig:writing-thesis}
 	\end{figure}
 	\subsection{8.3 Kết quả với ResNet50}
+	Huấn luyện mô hình với mạng ResNet50, với 5-Fold, mỗi fold gồm 10 epoch
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\linewidth]{results/resnet50/training_loss_results.png}
-		\caption{Đồ thị training loss, validation loss}
+		\caption{Đồ thị training loss, validation loss ResNet50}
 		\label{fig:writing-thesis}
 	\end{figure}
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\linewidth]{results/resnet50/valid_score_results.png}
-		\caption{Đồ thị Validation Score}
+		\caption{Đồ thị Validation Score ResNet50}
 		\label{fig:writing-thesis}
 	\end{figure}
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\linewidth]{results/resnet50/CV_Score_5_Folds_ResNet50.png}
-		\caption{Kết quả Cross Validation Score sau 5-Folds Training}
+		\caption{Kết quả Cross Validation Score sau 5-Folds Training ResNet50}
 		\label{fig:writing-thesis}
 	\end{figure}
 	\subsection{8.4 Kết quả với EfficientNet B5}
+	Huấn luyện mô hình với mạng EfficientNet B5, với 5-Fold, mỗi fold gồm 10 epoch
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{results/efficientnet-b5/training_loss_results_50.png}
+		\caption{Đồ thị training loss, validation loss EfficientNet B5}
+		\label{fig:writing-thesis}
+	\end{figure}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{results/efficientnet-b5/valid_score_results_50.png}
+		\caption{Đồ thị Validation Score EfficientNet B5}
+		\label{fig:writing-thesis}
+	\end{figure}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{results/efficientnet-b5/CV_Score_5_Folds_EfficientNetB5_50.png}
+		\caption{Kết quả Cross Validation Score sau 5-Folds Training EfficientNet B5}
+		\label{fig:writing-thesis}
+	\end{figure}
+	\section{9. Kết luận}
+	Với phương pháp học Transfer Learning với mạng ResNet18, 34, 50 và EfficentNet B5 đã giải quyết bài toán phân loại lá bệnh một cách tốt với độ chính xác tương đối cao sau 5-Fold là hơn 97\%, với kỹ thuật sử dụng dropout, K-Fold Cross Validation đảm bảo giảm thiểu, tránh overfitting
+	
+	\begin{center}
+		\begin{tabular}{ |c|c|c|c| } 
+			\hline
+			Neural Nets & K-Fold & Epoch/ Fold & Cross-Validation Score \\ \hline
+			ResNet18 & 5 & 10 & 0.9739 \\ 
+			ResNet34 & 5 & 10 & 0.9720 \\ 
+			ResNet50 & 5 & 10 & 0.9733 \\ 
+			EfficientNetB5 & 5 & 10 & 0.9828 \\ 
+			\hline
+		\end{tabular}
+	\end{center}
+	Note: Khi tăng epoch huấn luyện EfficientNet B5 lên 20 epoch mỗi fold, kết quả đạt
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{results/efficientnet-b5/CV_Score_5_Folds_EfficientNetB5.png}
+		\caption{Kết quả Cross Validation Score sau 5-Folds Training}
+		\label{fig:writing-thesis}
+	\end{figure}
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\linewidth]{results/efficientnet-b5/training_loss_results.png}
@@ -1000,14 +1043,6 @@
 		\caption{Đồ thị Validation Score}
 		\label{fig:writing-thesis}
 	\end{figure}
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=1\linewidth]{results/efficientnet-b5/CV_Score_5_Folds_EfficientNetB5.png}
-		\caption{Kết quả Cross Validation Score sau 5-Folds Training}
-		\label{fig:writing-thesis}
-	\end{figure}
-	\section{9. Kết luận}
-	
 	\section{Phụ lục}
 	
 	\subsection{A. Transfer Learning - Phương pháp Học chuyển giao}
