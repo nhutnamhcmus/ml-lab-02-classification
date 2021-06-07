@@ -1056,10 +1056,10 @@
 	
 	\section{Phụ lục}
 	
-	\subsection{A. Transfer Learning - Phương pháp Học chuyển giao}
+	\subsection{A. Transfer Learning - Phương pháp Học chuyển tiếp}
 	Mô hình được đào tạo trước là một mạng đã lưu đã được đào tạo trước đó trên một tập dữ liệu lớn, thường là trong một nhiệm vụ phân loại hình ảnh quy mô lớn. Bạn có thể sử dụng mô hình được đào tạo trước như hiện tại hoặc sử dụng học chuyển giao để tùy chỉnh mô hình này cho một nhiệm vụ nhất định.
 	
-	Học chuyển giao (Transfer Learning) là một phương pháp Học Máy áp dụng kiến thức đã học được từ vấn đề này trong miền nguồn $ D_{S} $ với tác vụ nguồn $ T_{S}$ chuyển sang vấn đề khác - miền đích $ D_{T} $. Đề xuất của Chuyển giao Học tập là cải thiện chức năng học tập $f_{T}(.)$ Trong nhiệm vụ mục tiêu $ T_{T} $ trên miền mục tiêu $D_{T}$
+	Học chuyển tiếp (Transfer Learning) là một phương pháp Học Máy áp dụng kiến thức đã học được từ vấn đề này trong miền nguồn $ D_{S} $ với tác vụ nguồn $ T_{S}$ chuyển sang vấn đề khác - miền đích $ D_{T} $. Đề xuất của Chuyển giao Học tập là cải thiện chức năng học tập $f_{T}(.)$ Trong nhiệm vụ mục tiêu $ T_{T} $ trên miền mục tiêu $D_{T}$
 	
 	Đây là một cách tiếp cận phổ biến trong học sâu, trong đó các mô hình được đào tạo trước được sử dụng làm điểm khởi đầu cho các nhiệm vụ xử lý ngôn ngữ tự nhiên và thị giác máy tính với nguồn lực máy tính và thời gian khổng lồ cần thiết để phát triển các mô hình mạng nơ-ron cho những vấn đề này và từ những bước tiến lớn trong kỹ năng mà họ cung cấp về các vấn đề liên quan.
 	
@@ -1081,9 +1081,9 @@
 		\item Tune Model: Theo tùy chọn, mô hình có thể cần được điều chỉnh hoặc tinh chỉnh dựa trên dữ liệu cặp đầu vào - đầu ra có sẵn cho nhiệm vụ quan tâm.
 	\end{itemize}
 	
-	Loại thứ hai là Học tập chuyển giao phương pháp tiếp cận theo mô hình được đào tạo trước phổ biến trong lĩnh vực Học sâu.
+	Loại thứ hai là Học tập chuyển tiếp với phương pháp tiếp cận theo mô hình được đào tạo trước phổ biến trong lĩnh vực Học sâu.
 	
-	Trong phân trình bày bài báo, chúng em sử dụng một cách tiếp cận sử dụng Học chuyển giao (Transfer Learning) như một bước khởi đầu cơ bản, bằng cách sử dụng ResNet50
+	Trong phân trình bày bài báo cáo, chúng em sử dụng một cách tiếp cận sử dụng Học chuyển giao (Transfer Learning) như một bước khởi đầu cơ bản, bằng cách sử dụng ResNet50
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\linewidth]{architecture/Transfer_learning_as_a_starting_point.png}
@@ -1119,6 +1119,20 @@
 		\centering
 		\includegraphics[width=1\linewidth]{architecture/residual_learning_building_block.png}
 		\caption{Residual Blocks - Deep Residual Learning for Image Recognition}
+		\label{fig:writing-thesis}
+	\end{figure}
+	Để có ý tưởng cho việc hình thành các khối Residual Block, người ta có một khái niệm Các Lớp Hàm Số (Function Classes). Coi $\mathcal{F}$ là một lớp các hàm mà một kiến trúc mạng cụ thể (cùng với tốc độ học và các siêu tham số khác) có thể đạt được. Nói cách khác, với mọi hàm số $f \in \mathcal{F}$, luôn tồn tại một số tập tham số  $W$  có thể tìm được bằng việc huấn luyện trên một tập dữ liệu phù hợp. Giả sử  $f^{*}$  là hàm cần tìm. Sẽ rất thuận lợi nếu hàm này thuộc tập $\mathcal{F}$ , nhưng thường không may mắn như vậy. Thay vào đó, ta sẽ cố gắng tìm các hàm số $f^{*}_{\mathcal{F}}$ tốt nhất có thể trong tập $\mathcal{F}$ . (Đắm mình vào Học Sâu - Chương 7. Mạng Nơ-ron Tích Chập Hiện Đại, 7.6 Mạng Phần Dư)
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{architecture/function_classes.png}
+		\caption{Function Classes - Dive in Deep Learning}
+		\label{fig:writing-thesis}
+	\end{figure}
+	Ý tưởng trọng tâm của ResNet là mỗi tầng được thêm vào nên có một thành phần là hàm số đồng nhất. Điều này có nghĩa rằng, nếu ta huấn luyện tầng mới được thêm vào thành một ánh xạ đồng nhất  $f(x)=x$ , thì mô hình mới sẽ hiệu quả ít nhất bằng mô hình ban đầu. Vì tầng được thêm vào có thể khớp dữ liệu huấn luyện tốt hơn, dẫn đến sai số huấn luyện cũng nhỏ hơn. Tốt hơn nữa, hàm số đồng nhất nên là hàm đơn giản nhất trong một tầng thay vì hàm null  $f(x)=0$ (Đắm mình vào Học Sâu - Chương 7. Mạng Nơ-ron Tích Chập Hiện Đại, 7.6 Mạng Phần Dư).
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{architecture/regular_block_residual_block.png}
+		\caption{A regular block (left) and a residual block (right). - Dive in Deep Learning}
 		\label{fig:writing-thesis}
 	\end{figure}
 	\begin{figure}[H]
